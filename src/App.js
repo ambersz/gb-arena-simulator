@@ -94,8 +94,8 @@ function App() {
     setStats(averageObject(agg, hpState[0]));
     setRawData(rd);
   }
-  const [attacker, setAttacker] = useCachedState({}, 'arena-sim-attacker');
-  const [defender, setDefender] = useCachedState({}, 'arena-sim-defender');
+  const [attacker, setAttacker] = useCachedState({ hp: 2388291, worth: 2388291, aptitude: 207, critChance: 0.315, critMultiplier: 2.67, atkBonus: 0.5, skillBonus: 0 }, 'arena-sim-attacker');
+  const [defender, setDefender] = useCachedState({ worth: 2851027, aptitude: 267, critChance: 0.2065, critMultiplier: 2 }, 'arena-sim-defender');
   const [stats, setStats] = useState({})
   return (
     <div className="App">
