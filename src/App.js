@@ -5,12 +5,19 @@ import Attacker from './Attacker';
 import Defender from './Defender';
 import ObjectViewer from './ObjectViewer';
 import Graph from './Graph';
+import BonusChooser from './BonusChooser';
 
 function useCachedState(defaultValue, localStorageKey) {
   const first = useRef(true);
   const [state, setState] = useState(defaultValue);
   if (first.current) {
-    setState(JSON.parse(window.localStorage.getItem(localStorageKey)) ?? defaultValue);
+    let v;
+    try {
+      v = JSON.parse(window.localStorage.getItem(localStorageKey)) ?? defaultValue
+    } catch {
+      v = defaultValue;
+    }
+    setState(v);
     first.current = false
   }
   const interceptedSetState = useCallback(
@@ -97,6 +104,7 @@ function App() {
   const [attacker, setAttacker] = useCachedState({ hp: 2388291, worth: 2388291, aptitude: 207, critChance: 0.315, critMultiplier: 2.67, atkBonus: 0.5, skillBonus: 0 }, 'arena-sim-attacker');
   const [defender, setDefender] = useCachedState({ worth: 2851027, aptitude: 267, critChance: 0.2065, critMultiplier: 2 }, 'arena-sim-defender');
   const [stats, setStats] = useState({})
+
   return (
     <div className="App">
       <div>Your Retainer:</div>
@@ -105,6 +113,7 @@ function App() {
       <br />
       <div>Opponent's Retainer</div>
       <Defender value={defender} onChange={setDefender} />
+      <BonusChooser attacker={attacker} setAttacker={setAttacker} />
       <div>Iterations</div>
       <input {...hpInput} />
       <button onClick={sim}> Run Sim! </button>
