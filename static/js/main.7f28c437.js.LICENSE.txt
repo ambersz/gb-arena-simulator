@@ -4,6 +4,8 @@ object-assign
 @license MIT
 */
 
+/*! pako 2.0.4 https://github.com/nodeca/pako @license (MIT AND Zlib) */
+
 /** @license React v0.20.2
  * scheduler.production.min.js
  *

@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/gb-arena-simulator/static/css/main.073c9b0a.css",
-    "main.js": "/gb-arena-simulator/static/js/main.178810a5.js",
+    "main.js": "/gb-arena-simulator/static/js/main.7f28c437.js",
     "static/js/787.e0ef6d05.chunk.js": "/gb-arena-simulator/static/js/787.e0ef6d05.chunk.js",
     "index.html": "/gb-arena-simulator/index.html",
     "main.073c9b0a.css.map": "/gb-arena-simulator/static/css/main.073c9b0a.css.map",
-    "main.178810a5.js.map": "/gb-arena-simulator/static/js/main.178810a5.js.map",
+    "main.7f28c437.js.map": "/gb-arena-simulator/static/js/main.7f28c437.js.map",
     "787.e0ef6d05.chunk.js.map": "/gb-arena-simulator/static/js/787.e0ef6d05.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.178810a5.js"
+    "static/js/main.7f28c437.js"
   ]
 }
