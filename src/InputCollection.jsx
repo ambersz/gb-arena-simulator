@@ -11,9 +11,14 @@ function LabelledInput({ label, stateKey, onChange , value =''}) {
   const handleChange = (e) => {
     onChange(v => ({...v, [stateKey]: e.target.value}));
   }
+  const handleBlur = (e) => {
+    console.log({ handleBlur: e });
+    onChange(v => ({ ...v, [stateKey]: parseFloat(e.target.value) }));
+
+  }
   return (<div>
     <div>{label}</div>
-    <input value={value} onChange={handleChange}/>
+    <input value={value} onChange={handleChange} onBlur={handleBlur} />
   </div>)
 }
 

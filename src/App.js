@@ -1,48 +1,14 @@
 import './App.css';
-import { useCallback, useEffect, useState, useRef } from 'react';
+import { useCallback, useState, useMemo } from 'react';
 import { simBattle } from './arena-utils/sim';
 import Attacker from './Attacker';
 import Defender from './Defender';
 import ObjectViewer from './ObjectViewer';
 import Graph from './Graph';
 import BonusChooser from './BonusChooser';
+import useCachedState from './utils/useCachedState';
 
-function useCachedState(defaultValue, localStorageKey) {
-  const first = useRef(true);
-  const [state, setState] = useState(defaultValue);
-  if (first.current) {
-    let v;
-    try {
-      v = JSON.parse(window.localStorage.getItem(localStorageKey)) ?? defaultValue
-    } catch {
-      v = defaultValue;
-    }
-    setState(v);
-    first.current = false
-  }
-  const interceptedSetState = useCallback(
-    (value) => {
-      function cache(newValue) {
-        window.localStorage.setItem(localStorageKey, JSON.stringify(newValue))
-
-      }
-      if (typeof value === 'function') {
-        setState(old => {
-          const newValue = value(old);
-          cache(newValue);
-          return newValue
-        });
-
-      } else {
-
-        setState(value);
-        cache(value)
-      }
-    },
-    [setState, localStorageKey],
-  )
-  return [state, interceptedSetState];
-}
+import Bandits from './Bandit';
 
 
 function useInput([state, setState], id) {
@@ -76,14 +42,36 @@ function averageObject(original, divisor) {
   })
   return temp;
 }
-
 function App() {
+  const tabs = useMemo(() => {
+    return {
+      Bandits: (<Bandits />),
+      Arena: (<Arena />),
+    }
+  }, [])
+  const [tab, setTab] = useState('')
+
+  return (<div className="App">
+
+    {
+      Object.keys(tabs).map(key => {
+        return <TabButton key={key} name={key} setTab={setTab} tab={tab} />
+      })}
+    {tab && tabs[tab]}
+  </div>
+  )
+
+}
+
+function TabButton({ name, setTab, tab }) {
+  const cb = useCallback(() => {
+    setTab(name)
+  }, [name, setTab]);
+  return (<button onClick={cb} disabled={name === tab}>{name}</button>)
+}
+
+function Arena() {
   const [rawData, setRawData] = useCachedState([], 'arena-sim-raw-data-ahp');
-  const [histData, setHistData] = useState([]);
-  // useEffect(() => {
-  //   let binner = d3.bin();
-  //   let bins = binner(rawData)
-  // }, [rawData, setHistData])
   const hpState = useCachedState(1, 'arena-sim-iterations')
   const hpInput = useInput(hpState);
   const sim = (e) => {
@@ -106,7 +94,7 @@ function App() {
   const [stats, setStats] = useState({})
 
   return (
-    <div className="App">
+    <div>
       <div>Your Retainer:</div>
       <Attacker value={attacker} onChange={setAttacker} />
       <br />

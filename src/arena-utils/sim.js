@@ -41,6 +41,8 @@ export function simBattle(attackingRetainer = aAttackingRetainer, defendingRetai
     death: (aHP <= 0) ? 1 : 0,
     aHP: Math.max(aHP, 0),
     dHP: Math.max(dHP, 0),
+    hpLost: attackingRetainer.hp - aHP,
+    hpLostPercentage: (attackingRetainer.hp - aHP) / attackingRetainer.worth
   }
 }
 
