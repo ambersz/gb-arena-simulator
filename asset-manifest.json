@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/gb-tools/static/css/main.073c9b0a.css",
-    "main.js": "/gb-tools/static/js/main.f0c0595b.js",
+    "main.js": "/gb-tools/static/js/main.64074b33.js",
     "static/js/787.e0ef6d05.chunk.js": "/gb-tools/static/js/787.e0ef6d05.chunk.js",
     "index.html": "/gb-tools/index.html",
     "main.073c9b0a.css.map": "/gb-tools/static/css/main.073c9b0a.css.map",
-    "main.f0c0595b.js.map": "/gb-tools/static/js/main.f0c0595b.js.map",
+    "main.64074b33.js.map": "/gb-tools/static/js/main.64074b33.js.map",
     "787.e0ef6d05.chunk.js.map": "/gb-tools/static/js/787.e0ef6d05.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.f0c0595b.js"
+    "static/js/main.64074b33.js"
   ]
 }
